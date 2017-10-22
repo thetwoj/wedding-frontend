@@ -1,0 +1,52 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  height: 50px;
+  padding: 20px;
+  color: white;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.invitationContainer {
+  float: left;
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  width: 75%;
+  align-content: stretch;
+}
+
+.invitation {
+  flex: 1;
+  flex-grow: 0;
+}
+
+.editBoxContainer {
+  float: right;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: row-reverse;
+  width: 25%;
+  align-content: stretch;
+  text-align: left;
+}
+
+.fullWidth {
+  width: 100%
+}
