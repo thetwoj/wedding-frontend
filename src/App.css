@@ -28,8 +28,9 @@
   display: flex;
   flex-grow: 1;
   flex-wrap: wrap;
-  width: 75%;
+  width: 50%;
   align-content: stretch;
+  transition: width .1s;
 }
 
 .invitation {
@@ -38,15 +39,27 @@
 }
 
 .editBoxContainer {
-  float: right;
+  float: left;
   display: flex;
   flex-grow: 1;
-  flex-direction: row-reverse;
-  width: 25%;
+  flex-wrap: wrap;
+  width: 50%;
   align-content: stretch;
   text-align: left;
 }
 
+.editInvitation, .editControls {
+  margin: 12px;
+  padding: 12px;
+  flex: 1 100%;
+}
+
+.editGuest {
+  margin: 12px;
+  padding: 12px;
+  flex: 1 auto;
+}
+
 .fullWidth {
-  width: 100%
+  width: 100%;
 }

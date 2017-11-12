@@ -118,26 +118,22 @@ class App extends React.Component {
           iconElementRight={<FlatButton label="Create Invitation" onClick={event => this.createInvitation(event)}/>}
         />
 
-        <div className="invitationContainer">
+        <div className={"invitationContainer " + (this.state.selectedInvitation ? '' : 'fullWidth')}>
           <div className="fullWidth">
-          <TextField
-            style={{boxSizing: 'border-box', padding: 12}}
-            onChange={event => this.handleSearchChange(event)}
-            floatingLabelText="Search"
-          />
-            </div>
+            <TextField
+              onChange={event => this.handleSearchChange(event)}
+              floatingLabelText="Search"
+            />
+          </div>
           {invitationRows}
         </div>
 
-        <div className="editBoxContainer">
-          <div className="fullWidth">
-            <EditForm
-              style={{flex: 1}}
-              invitation={this.state.selectedInvitation} callback={() => this.fetchAll()}
-              createGuest={event => this.createGuest(event)}
-              removeTempGuest={index => this.removeTempGuest(index)}></EditForm>
-          </div>
-        </div>
+          <EditForm
+            style={{flex: 1}}
+            invitation={this.state.selectedInvitation}
+            callback={invitation => this.fetchAll(invitation)}
+            createGuest={event => this.createGuest(event)}
+            removeTempGuest={index => this.removeTempGuest(index)}></EditForm>
       </div>
     );
   }

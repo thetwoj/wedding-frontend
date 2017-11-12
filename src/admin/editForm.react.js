@@ -53,14 +53,18 @@ class EditForm extends React.Component {
   handleInvitationDelete(event) {
     const {invitation} = this.state;
 
-    fetch('http://127.0.0.1:8000/invitations/' + invitation.id + '/', {
-      method: 'delete',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(() => this.props.callback());
+    if (invitation.id) {
+      fetch('http://127.0.0.1:8000/invitations/' + invitation.id + '/', {
+        method: 'delete',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(() => this.props.callback());
+    } else {
+      this.props.callback();
+    }
 
     event.preventDefault();
   }
@@ -114,8 +118,7 @@ class EditForm extends React.Component {
         })
       })
         .then(resp => resp.json())
-        .then(resp => this.props.callback(resp))
-        .then(() => this.submitGuests());
+        .then(resp => this.props.callback(resp));
     }
     event.preventDefault();
   }
@@ -177,25 +180,26 @@ class EditForm extends React.Component {
     }
     const {invitation} = this.props;
     const invitationEdit = (
-      <div>
+      <Paper className="editInvitation">
+        <p><b>Invitation</b></p>
+        <TextField multiLine={true} name="address" value={invitation.address} hintText="Address"
+                   floatingLabelText="Address"
+                   onChange={event => this.handleInputChange(event)}
+                   fullWidth={true}/>
+        <br/>
+
+        <TextField name="access_code" value={invitation.access_code}
+                   floatingLabelText="Access code"
+                   onChange={event => this.handleInputChange(event)}
+                   fullWidth={true}/>
+        <br/>
+
         <Checkbox name="sent" checked={invitation.sent} label="Sent"
                   onCheck={event => this.handleInputChange(event)}/>
         <br/>
 
-        <TextField multiLine={true} name="address" value={invitation.address} hintText="Address"
-                   floatingLabelText="Address"
-                   onChange={event => this.handleInputChange(event)}/>
-        <br/>
-
-        <TextField name="access_code" value={invitation.access_code} hintText="Access code"
-                   floatingLabelText="Access code"
-                   onChange={event => this.handleInputChange(event)}/>
-        <br/>
-
         <FlatButton label="Delete" onClick={event => this.handleInvitationDelete(event)}/>
-        <br/>
-        <br/>
-      </div>
+      </Paper>
     );
 
     let guestEdits = null;
@@ -214,41 +218,41 @@ class EditForm extends React.Component {
         }
         return a.invitation - b.invitation
       });
-      console.log(guests);
 
       guests.forEach((guest, index) => {
         guestEdits.push(
-          <div key={'guestEdit' + index}>
+          <Paper className="editGuest" key={'guestEdit' + index}>
+            <p><b>Guest</b></p>
             <TextField name="name" value={guest.name || ''} hintText="Name" floatingLabelText="Name"
-                       onChange={event => this.handleInputChange(event, index)}/>
+                       onChange={event => this.handleInputChange(event, index)}
+                       fullWidth={true}/>
             <br/>
 
             <SelectField name="attending" value={guest.attending === null ? "no_response" : guest.attending}
                          floatingLabelText="Attending"
-                         onChange={(event, key, payload) => this.handleDropdownChange(index, payload)}>
+                         onChange={(event, key, payload) => this.handleDropdownChange(index, payload)}
+                         fullWidth={true}>
               <MenuItem value={true} primaryText="Yes"/>
               <MenuItem value={false} primaryText="No"/>
               <MenuItem value='no_response' primaryText="No response"/>
             </SelectField>
             <br/>
 
+            <TextField type="number" name="food_choice" value={guest.food_choice || ''} floatingLabelText="Food choice"
+                       onChange={event => this.handleInputChange(event, index)}
+                       fullWidth={true}/>
+            <br/>
+
             <Checkbox name="offered_plus_one" checked={guest.offered_plus_one || false} label="Offered +1"
                       onCheck={event => this.handleInputChange(event, index)}/>
-            <br/>
 
             <Checkbox name="bringing_plus_one" checked={guest.bringing_plus_one || false} label="Bringing +1"
                       disabled={!guest.offered_plus_one}
                       onCheck={event => this.handleInputChange(event, index)}/>
-            <br/>
 
-            <TextField type="number" name="food_choice" value={guest.food_choice || ''}
-                       onChange={event => this.handleInputChange(event, index)}/>
-            <br/>
 
             <FlatButton label="Delete" onClick={(event) => this.handleGuestDelete(event, guest, index)}/>
-            <br/>
-            <br/>
-          </div>
+          </Paper>
         )
       });
     }
@@ -259,14 +263,14 @@ class EditForm extends React.Component {
     }
 
     return (
-      <Paper style={{margin: 12, padding: 12}}>
-        <form>
-          {invitationEdit}
-          {guestEdits}
-          <FlatButton label="Submit" onClick={event => this.handleSubmit(event)}/>
+      <form className="editBoxContainer">
+        {invitationEdit}
+        {guestEdits}
+        <Paper className="editControls">
+          <FlatButton label="Submit all" onClick={event => this.handleSubmit(event)}/>
           {addGuest}
-        </form>
-      </Paper>
+        </Paper>
+      </form>
     )
   }
 }
