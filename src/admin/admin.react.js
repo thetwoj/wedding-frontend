@@ -6,6 +6,7 @@ import NewInvitationRow from './newInvitationRow.react'
 
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
+import Paper from 'material-ui/Paper';
 import TextField from 'material-ui/TextField';
 
 
@@ -13,6 +14,9 @@ class Admin extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      user: null,
+      pass: null,
+      token: null,
       guests: null,
       invitations: null,
       selectedInvitation: null,
@@ -24,9 +28,31 @@ class Admin extends React.Component {
     this.setState({selectedInvitation: invitation});
   };
 
-  componentDidMount() {
-    this.fetchAll();
-  };
+  login(event) {
+    fetch('/login/', {
+      method: 'post',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        username: this.state.user,
+        password: this.state.pass,
+      })
+    })
+      .then(resp => {
+        if (!resp.ok) {
+          throw Error();
+        }
+        return resp
+      })
+      .then(resp => resp.json())
+      .then(resp => this.setState({token: resp.token}))
+      .then(() => this.fetchAll())
+      .catch(() => {return});
+
+    event.preventDefault();
+  }
 
   fetchAll(invitation) {
     this.fetchGuests();
@@ -37,7 +63,11 @@ class Admin extends React.Component {
   };
 
   fetchInvitations = () => {
-    fetch('http://127.0.0.1:8000/invitations/')
+    fetch('/invitations/', {
+      headers: {
+        'Authorization': 'Token ' + this.state.token
+      }
+    })
       .then(resp => resp.json())
       .then(resp => {
         let selectedInvitation = null;
@@ -57,7 +87,11 @@ class Admin extends React.Component {
   };
 
   fetchGuests = () => {
-    fetch('http://127.0.0.1:8000/guests/')
+    fetch('/guests/', {
+      headers: {
+        'Authorization': 'Token ' + this.state.token
+      }
+    })
       .then(resp => resp.json())
       .then(resp => {
         this.setState({guests: resp})
@@ -90,6 +124,13 @@ class Admin extends React.Component {
     );
   }
 
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({[name]: value});
+  }
 
   handleSearchChange(event) {
     const target = event.target;
@@ -101,6 +142,24 @@ class Admin extends React.Component {
   }
 
   render() {
+    if (!this.state.token) {
+      return (
+        <form>
+          <div className="loginContainer">
+            <Paper className="loginPaper">
+              <TextField name="user" value={this.state.user || ''} hintText="User" floatingLabelText="User"
+                         onChange={event => this.handleInputChange(event)}
+                         fullWidth={true}/>
+              <TextField name="pass" value={this.state.pass || ''} hintText="Name" floatingLabelText="Pass"
+                         onChange={event => this.handleInputChange(event)} type="password"
+                         fullWidth={true}/>
+              <FlatButton label="Login" onClick={event => this.login(event)}/>
+            </Paper>
+          </div>
+        </form>
+      )
+    }
+
     let invitationRows = [];
     if (this.state.displayedInvitations) {
       this.state.displayedInvitations.forEach(invitation => {
@@ -116,6 +175,7 @@ class Admin extends React.Component {
         <AppBar
           title="Wedding admin"
           style={{background: '#5388CD'}}
+          iconElementLeft={<span/>}
           iconElementRight={<FlatButton label="Create Invitation" onClick={event => this.createInvitation(event)}/>}
         />
 
@@ -131,6 +191,7 @@ class Admin extends React.Component {
 
         <EditForm
           style={{flex: 1}}
+          token={this.state.token}
           invitation={this.state.selectedInvitation}
           callback={invitation => this.fetchAll(invitation)}
           createGuest={event => this.createGuest(event)}

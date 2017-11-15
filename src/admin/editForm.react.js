@@ -11,11 +11,9 @@ import MenuItem from 'material-ui/MenuItem';
 class EditForm extends React.Component {
   constructor(props) {
     super(props);
-    if (!props.invitation) {
-      return
-    }
 
     this.state = {
+      token: props.token,
       invitation: props.invitation
     };
   }
@@ -54,10 +52,11 @@ class EditForm extends React.Component {
     const {invitation} = this.state;
 
     if (invitation.id) {
-      fetch('http://127.0.0.1:8000/invitations/' + invitation.id + '/', {
+      fetch('/invitations/' + invitation.id + '/', {
         method: 'delete',
         headers: {
           'Accept': 'application/json',
+          'Authorization': 'Token ' + this.state.token,
           'Content-Type': 'application/json'
         }
       })
@@ -73,10 +72,11 @@ class EditForm extends React.Component {
     if (!guest.id) {
       this.props.removeTempGuest(index);
     } else {
-      fetch('http://127.0.0.1:8000/invitations/' + guest.invitation + '/guests/' + guest.id + '/', {
+      fetch('/invitations/' + guest.invitation + '/guests/' + guest.id + '/', {
         method: 'delete',
         headers: {
           'Accept': 'application/json',
+          'Authorization': 'Token ' + this.state.token,
           'Content-Type': 'application/json'
         }
       })
@@ -90,10 +90,11 @@ class EditForm extends React.Component {
     const {invitation} = this.state;
 
     if (invitation.id) {
-      fetch('http://127.0.0.1:8000/invitations/' + invitation.id + '/', {
+      fetch('/invitations/' + invitation.id + '/', {
         method: 'put',
         headers: {
           'Accept': 'application/json',
+          'Authorization': 'Token ' + this.state.token,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -105,10 +106,11 @@ class EditForm extends React.Component {
         .then(() => this.props.callback())
         .then(() => this.submitGuests());
     } else {
-      fetch('http://127.0.0.1:8000/invitations/', {
+      fetch('/invitations/', {
         method: 'post',
         headers: {
           'Accept': 'application/json',
+          'Authorization': 'Token ' + this.state.token,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -137,10 +139,11 @@ class EditForm extends React.Component {
       }
 
       if (guest.id) {
-        fetch('http://127.0.0.1:8000/guests/' + guest.id + '/', {
+        fetch('/guests/' + guest.id + '/', {
           method: 'put',
           headers: {
             'Accept': 'application/json',
+            'Authorization': 'Token ' + this.state.token,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
@@ -154,10 +157,11 @@ class EditForm extends React.Component {
         })
           .then(() => this.props.callback());
       } else {
-        fetch('http://127.0.0.1:8000/guests/', {
+        fetch('/guests/', {
           method: 'post',
           headers: {
             'Accept': 'application/json',
+            'Authorization': 'Token ' + this.state.token,
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
