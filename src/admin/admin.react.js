@@ -47,9 +47,8 @@ class Admin extends React.Component {
         return resp
       })
       .then(resp => resp.json())
-      .then(resp => this.setState({token: resp.token}))
-      .then(() => this.fetchAll())
-      .catch(() => {return});
+      .then(resp => this.setState({token: resp.token}, () => this.fetchAll()))
+      .catch();
 
     event.preventDefault();
   }

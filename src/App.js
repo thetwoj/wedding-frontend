@@ -5,21 +5,24 @@ import Admin from './admin/admin.react.js'
 import Home from './public/home/home.react'
 
 import {
-  BrowserRouter as Router,
+  BrowserRouter,
   Route,
-  Link
+  Switch
 } from 'react-router-dom'
 
 
 class App extends React.Component {
   render() {
     return (
-      <Router>
+      <BrowserRouter>
         <div>
-          <Route exact path="/" component={Home}/>
-          <Route path="/admin" component={Admin}/>
+          <Switch>
+            <Route exact path="/" component={Home}/>
+            <Route path="/admin" component={Admin}/>
+            <Route path="*" component={Home}/>
+          </Switch>
         </div>
-      </Router>
+      </BrowserRouter>
     )
   }
 }
