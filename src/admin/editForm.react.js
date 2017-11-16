@@ -52,7 +52,7 @@ class EditForm extends React.Component {
     const {invitation} = this.state;
 
     if (invitation.id) {
-      fetch('/invitations/' + invitation.id + '/', {
+      fetch('/api/invitations/' + invitation.id + '/', {
         method: 'delete',
         headers: {
           'Accept': 'application/json',
@@ -72,7 +72,7 @@ class EditForm extends React.Component {
     if (!guest.id) {
       this.props.removeTempGuest(index);
     } else {
-      fetch('/invitations/' + guest.invitation + '/guests/' + guest.id + '/', {
+      fetch('/api/invitations/' + guest.invitation + '/guests/' + guest.id + '/', {
         method: 'delete',
         headers: {
           'Accept': 'application/json',
@@ -90,7 +90,7 @@ class EditForm extends React.Component {
     const {invitation} = this.state;
 
     if (invitation.id) {
-      fetch('/invitations/' + invitation.id + '/', {
+      fetch('/api/invitations/' + invitation.id + '/', {
         method: 'put',
         headers: {
           'Accept': 'application/json',
@@ -106,7 +106,7 @@ class EditForm extends React.Component {
         .then(() => this.props.callback())
         .then(() => this.submitGuests());
     } else {
-      fetch('/invitations/', {
+      fetch('/api/invitations/', {
         method: 'post',
         headers: {
           'Accept': 'application/json',
@@ -139,7 +139,7 @@ class EditForm extends React.Component {
       }
 
       if (guest.id) {
-        fetch('/guests/' + guest.id + '/', {
+        fetch('/api/guests/' + guest.id + '/', {
           method: 'put',
           headers: {
             'Accept': 'application/json',
@@ -157,7 +157,7 @@ class EditForm extends React.Component {
         })
           .then(() => this.props.callback());
       } else {
-        fetch('/guests/', {
+        fetch('/api/guests/', {
           method: 'post',
           headers: {
             'Accept': 'application/json',

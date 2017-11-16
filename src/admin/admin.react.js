@@ -29,7 +29,7 @@ class Admin extends React.Component {
   };
 
   login(event) {
-    fetch('/login/', {
+    fetch('/api/login/', {
       method: 'post',
       headers: {
         'Accept': 'application/json',
@@ -62,7 +62,7 @@ class Admin extends React.Component {
   };
 
   fetchInvitations = () => {
-    fetch('/invitations/', {
+    fetch('/api/invitations/', {
       headers: {
         'Authorization': 'Token ' + this.state.token
       }
@@ -86,7 +86,7 @@ class Admin extends React.Component {
   };
 
   fetchGuests = () => {
-    fetch('/guests/', {
+    fetch('/api/guests/', {
       headers: {
         'Authorization': 'Token ' + this.state.token
       }
