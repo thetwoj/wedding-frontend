@@ -1,53 +1,195 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 .App {
   text-align: center;
 }
 
-/*.App-logo {*/
-/*animation: App-logo-spin infinite 20s linear;*/
-/*height: 80px;*/
-/*}*/
+/* NEW HOME */
 
-/*.App-header {*/
-/*background-color: #222;*/
-/*height: 50px;*/
-/*padding: 20px;*/
-/*color: white;*/
-/*}*/
+a.anchor {
+  display: block;
+  position: relative;
+  top: -40px;
+  visibility: hidden;
+}
 
-/*.App-intro {*/
-/*font-size: large;*/
-/*}*/
+.blue-bg {
+  background: #5388CD;
+}
 
-/*@keyframes App-logo-spin {*/
-/*from { transform: rotate(0deg); }*/
-/*to { transform: rotate(360deg); }*/
-/*}*/
+.gray-bg {
+  background: #f5f5f5;
+}
 
-.editBoxContainer {
+.intro {
+  background-image: url('images/us_engage.jpg');
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .intro {
+    background-image: url('images/us_engage_mobile.jpg');
+  }
+}
+
+.pic-break {
+  height: 200px;
+  background-image: url('images/us_bw_hands.jpg');
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .pic-break {
+    background-image: url('images/us_bw_hands_mobile.jpg');
+  }
+}
+
+.noodles-break {
+  height: 50vh;
+  background-image: url('images/noodles.jpg');
+  background-size: cover;
+}
+
+@media (max-width: 768px) {
+  .noodles-break {
+    height: 450px;
+    background-image: url('images/noodles_mobile.jpg');
+  }
+}
+
+.navbar-title {
+  text-align: left;
   float: left;
+  margin-left: 20vw;
+}
+
+@media (max-width: 768px) {
+  .navbar-title {
+    margin-left: 5vw;
+  }
+}
+
+.navbar-links {
+  font-size: 20px;
+  font-weight: 100;
+  line-height: 64px;
+  text-align: right;
+  margin-right: 20vw;
+}
+
+@media (max-width: 768px) {
+  .navbar-links {
+    margin-right: 5vw;
+  }
+}
+
+.navbar-links a:link {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-links a:visited {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-links a:active {
+  text-decoration: none;
+  color: white;
+}
+
+.navbar-links a:hover {
+  cursor: pointer;
+  color: whitesmoke;
+}
+
+@media (max-width: 768px) {
+  .navbar-links a {
+    display: none;
+  }
+}
+
+.transparent-gray-bg {
+  background: rgba(83, 136, 205, .7);
+}
+
+.flex-center {
   display: flex;
-  flex-grow: 1;
-  flex-wrap: wrap;
-  width: 50%;
-  align-content: stretch;
+  justify-content: flex-end;
+  flex-direction: column;
+  height: 100%;
+}
+
+.indented-text {
+  padding-left: 24px;
+}
+
+.navbar {
+  width: 100%;
+  background: #5388CD;
+  position: fixed;
+  top: 0;
+}
+
+.row {
+  width: auto;
+  margin: auto;
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+#home .view {
+  height: 100vh;
+}
+
+.content-block {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+}
+
+.content {
+  width: 60vw;
+  max-width: 1140px;
   text-align: left;
 }
 
-.editInvitation, .editControls {
-  margin: 12px;
-  padding: 12px;
-  flex: 1 100%;
+@media (max-width: 768px) {
+  .content {
+    width: 90vw;
+  }
 }
 
-.editGuest {
-  margin: 12px;
-  padding: 12px;
-  flex: 1 auto;
+.black-text {
+  color: #000;
 }
 
-.fullWidth {
-  width: 100% !important;
+.white-text {
+  color: #fff;
 }
+
+#home p, .title {
+  font-weight: 100;
+}
+
+/*Fixed background*/
+.fixed-bg {
+  background: url("https://mdbootstrap.com/images/regular/work/img%20(1).jpg") no-repeat center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 55vh;
+}
+
+main {
+  margin-bottom: -20px;
+}
+
+/* LEGACY HOME */
 
 .homeCardContainer {
   display: flex;
@@ -86,6 +228,30 @@
   flex-grow: 0;
 }
 
+/*** ADMIN CSS ***/
+
+.editBoxContainer {
+  float: left;
+  display: flex;
+  flex-grow: 1;
+  flex-wrap: wrap;
+  width: 50%;
+  align-content: stretch;
+  text-align: left;
+}
+
+.editInvitation, .editControls {
+  margin: 12px;
+  padding: 12px;
+  flex: 1 100%;
+}
+
+.editGuest {
+  margin: 12px;
+  padding: 12px;
+  flex: 1 auto;
+}
+
 .loginContainer {
   display: flex;
   justify-content: center;
@@ -94,4 +260,8 @@
 .loginPaper {
   margin: 24px;
   width: 20%;
+}
+
+.fullWidth {
+  width: 100% !important;
 }
