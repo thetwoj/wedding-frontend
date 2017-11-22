@@ -127,7 +127,7 @@ class Home extends React.Component {
                 If the weather cooperates the ceremony will happen outdoors and the reception will be in the barn,
                 if it's raining the ceremony will take place in the barn<br/>
                 <br/>
-                Please note that regardless of weather it's likely you'll have to walk on unpaved ground and some point
+                Please note that regardless of weather it's likely you'll have to walk on unpaved ground at some point
                 during the evening, plan shoes accordingly
               </p>
               <p>
