@@ -1,8 +1,8 @@
 import React from 'react';
 
 import './App.css';
-import Admin from './admin/admin.react.js'
-import Home from './public/home/home.react'
+import Admin from './admin/Admin.react.js'
+import Home from './public/home/Home.react'
 
 import {
   BrowserRouter,

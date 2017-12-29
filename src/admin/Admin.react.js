@@ -1,8 +1,8 @@
 import React from 'react';
 
 import '../App.css';
-import EditForm from './editForm.react'
-import NewInvitationRow from './newInvitationRow.react'
+import EditForm from './EditForm.react'
+import NewInvitationRow from './NewInvitationRow.react'
 
 import AppBar from 'material-ui/AppBar';
 import FlatButton from 'material-ui/FlatButton';
@@ -164,7 +164,7 @@ class Admin extends React.Component {
       this.state.displayedInvitations.forEach(invitation => {
         invitationRows.push(
           <NewInvitationRow callback={invitation => this.selectInvitation(invitation)} invitation={invitation}
-                            key={invitation.id}></NewInvitationRow>
+                            key={invitation.id}/>
         )
       });
     }
@@ -194,7 +194,7 @@ class Admin extends React.Component {
           invitation={this.state.selectedInvitation}
           callback={invitation => this.fetchAll(invitation)}
           createGuest={event => this.createGuest(event)}
-          removeTempGuest={index => this.removeTempGuest(index)}></EditForm>
+          removeTempGuest={index => this.removeTempGuest(index)}/>
       </div>
     );
   }
