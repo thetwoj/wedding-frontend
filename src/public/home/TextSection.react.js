@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types';
 
 export default class TextSection extends Component {
 
   static propTypes = {
-    title: String,
-    text: String,
-    classes: String,
+    title: PropTypes.string,
+    text: PropTypes.element,
+    classes: PropTypes.string,
   };
 
   render() {
