@@ -20,8 +20,8 @@ class Home extends Component {
       <p><strong>Please ship any physical gifts as we don't live in Oregon</strong></p>
       <p>Our current address:</p>
       <p className="indented-text">
-        1075 Nilda Ave<br/>
-        Mountain View, CA 94040
+        5708 W Parmer Lane APT 2308<br/>
+        Austin, TX 78727
       </p>
       <p>If you aren't adequately dissuaded take a look at our <a href="https://www.zola.com/registry/akandjj">online
         registry</a> or consider donating to <a href="http://www.ninelivesfoundation.org/">a cause</a> that's
