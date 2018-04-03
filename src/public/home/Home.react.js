@@ -6,6 +6,7 @@ import TextSection from './TextSection.react.js';
 class Home extends Component {
   render() {
     let logisticsText = <div>
+      <p><a href="/rsvp">RSVP</a></p>
       <p>Date: June 9, 2018</p>
       <p>Time: 5pm - 10pm</p>
       <p>Location: Barn Kestrel in West Linn, Oregon</p>
@@ -115,6 +116,7 @@ class Home extends Component {
         <div className="navbar">
           <div className="navbar-links white-text">
             <span className="navbar-title">JJ and Amara</span>
+            <a href="/rsvp" style={{marginLeft: '12px'}}>RSVP</a>
             <a href="#logistics" style={{marginLeft: '12px'}}>Logistics</a>
             <a href="#registry" style={{marginLeft: '12px'}}>Registry</a>
             <a href="#ourstory" style={{marginLeft: '12px'}}>Our story</a>
@@ -127,7 +129,7 @@ class Home extends Component {
             <div className="flex-center">
               <div className="white-text transparent-gray-bg">
                 <h1 className="title">We're getting married!</h1>
-                <p className="subtitle">Formal invitations will be sent in the spring</p>
+                <p className="subtitle">It's time to <a href="/rsvp" className="rsvpLink">RSVP</a></p>
               </div>
             </div>
           </div>

@@ -3,6 +3,7 @@ import React from 'react';
 import './App.css';
 import Admin from './admin/Admin.react.js'
 import Home from './public/home/Home.react'
+import Rsvp from './public/rsvp/Rsvp.react'
 
 import {
   BrowserRouter,
@@ -19,6 +20,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path="/" component={Home}/>
             <Route path="/admin" component={Admin}/>
+            <Route path="/rsvp" component={Rsvp}/>
             <Route path="/" component={Home}/>
           </Switch>
         </div>

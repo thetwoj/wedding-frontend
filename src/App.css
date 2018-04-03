@@ -267,3 +267,23 @@ main {
 .fullWidth {
   width: 100% !important;
 }
+
+/* unvisited link */
+.rsvpLink:link {
+  color: white;
+}
+
+/* visited link */
+.rsvpLink:visited {
+  color: white;
+}
+
+/* mouse over link */
+.rsvpLink:hover {
+  color: white;
+}
+
+/* selected link */
+.rsvpLink:active {
+  color: white;
+}
