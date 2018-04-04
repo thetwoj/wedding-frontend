@@ -28,7 +28,7 @@ class Admin extends React.Component {
     this.setState({selectedInvitation: invitation});
   };
 
-  login(event) {
+  login = (event) => {
     fetch('/api/login/', {
       method: 'post',
       headers: {
@@ -51,9 +51,9 @@ class Admin extends React.Component {
       .catch();
 
     event.preventDefault();
-  }
+  };
 
-  fetchAll(invitation) {
+  fetchAll = (invitation) => {
     this.fetchGuests();
     this.fetchInvitations();
     if (invitation) {
@@ -97,48 +97,48 @@ class Admin extends React.Component {
       });
   };
 
-  createInvitation() {
+  createInvitation = () => {
     this.setState({selectedInvitation: {address: '', sent: false, access_code: ''}})
-  }
+  };
 
-  createGuest(event) {
+  createGuest = (event) => {
     let invitation = this.state.selectedInvitation;
     invitation.guests.push({});
     this.setState({selectedInvitation: invitation});
     event.preventDefault();
-  }
+  };
 
-  removeTempGuest(index) {
+  removeTempGuest = (index) => {
     let invitation = this.state.selectedInvitation;
     invitation.guests.splice(index, 1);
     this.setState({selectedInvitation: invitation});
-  }
+  };
 
-  filterInvitations(invitations, value) {
-    if (!value) {
+  filterInvitations = (invitations, value) => {
+    if (!value || !invitations) {
       return invitations
     }
     return invitations.filter(invitation =>
       invitation.guests.filter(guest => guest.name.toUpperCase().includes(value.toUpperCase())).length > 0
     );
-  }
+  };
 
-  handleInputChange(event) {
+  handleInputChange = (event) => {
     const target = event.target;
     const value = target.value;
     const name = target.name;
 
     this.setState({[name]: value});
-  }
+  };
 
-  handleSearchChange(event) {
+  handleSearchChange = (event) => {
     const target = event.target;
     const value = target.value;
 
     let displayed = this.filterInvitations(this.state.invitations, value);
     this.setState({search: value, displayedInvitations: displayed});
     event.preventDefault();
-  }
+  };
 
   render() {
     if (!this.state.token) {
@@ -147,12 +147,12 @@ class Admin extends React.Component {
           <div className="loginContainer">
             <Paper className="loginPaper">
               <TextField name="user" value={this.state.user || ''} hintText="User" floatingLabelText="User"
-                         onChange={event => this.handleInputChange(event)}
+                         onChange={this.handleInputChange}
                          fullWidth={true}/>
               <TextField name="pass" value={this.state.pass || ''} hintText="Name" floatingLabelText="Pass"
-                         onChange={event => this.handleInputChange(event)} type="password"
+                         onChange={this.handleInputChange} type="password"
                          fullWidth={true}/>
-              <FlatButton label="Login" onClick={event => this.login(event)}/>
+              <FlatButton label="Login" onClick={this.login}/>
             </Paper>
           </div>
         </form>
@@ -163,7 +163,7 @@ class Admin extends React.Component {
     if (this.state.displayedInvitations) {
       this.state.displayedInvitations.forEach(invitation => {
         invitationRows.push(
-          <NewInvitationRow callback={invitation => this.selectInvitation(invitation)} invitation={invitation}
+          <NewInvitationRow callback={this.selectInvitation} invitation={invitation}
                             key={invitation.id}/>
         )
       });
@@ -175,13 +175,13 @@ class Admin extends React.Component {
           title="Wedding admin"
           style={{background: '#5388CD'}}
           iconElementLeft={<span/>}
-          iconElementRight={<FlatButton label="Create Invitation" onClick={event => this.createInvitation(event)}/>}
+          iconElementRight={<FlatButton label="Create Invitation" onClick={this.createInvitation}/>}
         />
 
         <div className={"invitationContainer " + (this.state.selectedInvitation ? '' : 'fullWidth')}>
           <div className="fullWidth">
             <TextField
-              onChange={event => this.handleSearchChange(event)}
+              onChange={this.handleSearchChange}
               floatingLabelText="Search"
             />
           </div>
@@ -192,9 +192,9 @@ class Admin extends React.Component {
           style={{flex: 1}}
           token={this.state.token}
           invitation={this.state.selectedInvitation}
-          callback={invitation => this.fetchAll(invitation)}
-          createGuest={event => this.createGuest(event)}
-          removeTempGuest={index => this.removeTempGuest(index)}/>
+          callback={this.fetchAll}
+          createGuest={this.createGuest}
+          removeTempGuest={this.removeTempGuest}/>
       </div>
     );
   }
