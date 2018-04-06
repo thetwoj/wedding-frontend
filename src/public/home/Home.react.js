@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 
 import '../../App.css';
 import TextSection from './TextSection.react.js';
+import Navbar from '../common/Navbar.react.js'
 
 class Home extends Component {
   render() {
@@ -113,16 +114,7 @@ class Home extends Component {
 
     return (
       <div className="App">
-        <div className="navbar">
-          <div className="navbar-links white-text">
-            <span className="navbar-title">JJ and Amara</span>
-            <a href="/rsvp" style={{marginLeft: '12px'}}>RSVP</a>
-            <a href="#logistics" style={{marginLeft: '12px'}}>Logistics</a>
-            <a href="#registry" style={{marginLeft: '12px'}}>Registry</a>
-            <a href="#ourstory" style={{marginLeft: '12px'}}>Our story</a>
-            <a href="#faq" style={{marginLeft: '12px'}}>FAQ</a>
-          </div>
-        </div>
+        <Navbar/>
 
         <div id="home">
           <div className="view intro blue-bg">
