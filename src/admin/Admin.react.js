@@ -1,14 +1,13 @@
-import React from 'react';
+import React from "react";
 
-import '../App.css';
-import EditForm from './EditForm.react'
-import NewInvitationRow from './NewInvitationRow.react'
+import "../App.css";
+import EditForm from "./EditForm.react";
+import NewInvitationRow from "./NewInvitationRow.react";
 
-import AppBar from 'material-ui/AppBar';
-import FlatButton from 'material-ui/FlatButton';
-import Paper from 'material-ui/Paper';
-import TextField from 'material-ui/TextField';
-
+import AppBar from "material-ui/AppBar";
+import FlatButton from "material-ui/FlatButton";
+import Paper from "material-ui/Paper";
+import TextField from "material-ui/TextField";
 
 class Admin extends React.Component {
   constructor(props) {
@@ -20,51 +19,51 @@ class Admin extends React.Component {
       guests: null,
       invitations: null,
       selectedInvitation: null,
-      displayedInvitations: null,
+      displayedInvitations: null
     };
   }
 
-  selectInvitation = (invitation) => {
-    this.setState({selectedInvitation: invitation});
+  selectInvitation = invitation => {
+    this.setState({ selectedInvitation: invitation });
   };
 
-  login = (event) => {
-    fetch('/api/login/', {
-      method: 'post',
+  login = event => {
+    fetch("/api/login/", {
+      method: "post",
       headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json'
+        Accept: "application/json",
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
         username: this.state.user,
-        password: this.state.pass,
+        password: this.state.pass
       })
     })
       .then(resp => {
         if (!resp.ok) {
           throw Error();
         }
-        return resp
+        return resp;
       })
       .then(resp => resp.json())
-      .then(resp => this.setState({token: resp.token}, () => this.fetchAll()))
+      .then(resp => this.setState({ token: resp.token }, () => this.fetchAll()))
       .catch();
 
     event.preventDefault();
   };
 
-  fetchAll = (invitation) => {
+  fetchAll = invitation => {
     this.fetchGuests();
     this.fetchInvitations();
     if (invitation) {
-      this.setState({selectedInvitation: invitation});
+      this.setState({ selectedInvitation: invitation });
     }
   };
 
   fetchInvitations = () => {
-    fetch('/api/invitations/', {
+    fetch("/api/invitations/", {
       headers: {
-        'Authorization': 'Token ' + this.state.token
+        Authorization: "Token " + this.state.token
       }
     })
       .then(resp => resp.json())
@@ -79,64 +78,73 @@ class Admin extends React.Component {
         }
         let displayed = resp;
         if (this.state.search) {
-          displayed = this.filterInvitations(resp, this.state.search)
+          displayed = this.filterInvitations(resp, this.state.search);
         }
-        this.setState({invitations: resp, displayedInvitations: displayed, selectedInvitation: selectedInvitation});
+        this.setState({
+          invitations: resp,
+          displayedInvitations: displayed,
+          selectedInvitation: selectedInvitation
+        });
       });
   };
 
   fetchGuests = () => {
-    fetch('/api/guests/', {
+    fetch("/api/guests/", {
       headers: {
-        'Authorization': 'Token ' + this.state.token
+        Authorization: "Token " + this.state.token
       }
     })
       .then(resp => resp.json())
       .then(resp => {
-        this.setState({guests: resp})
+        this.setState({ guests: resp });
       });
   };
 
   createInvitation = () => {
-    this.setState({selectedInvitation: {address: '', sent: false, access_code: ''}})
+    this.setState({
+      selectedInvitation: { address: "", sent: false, access_code: "" }
+    });
   };
 
-  createGuest = (event) => {
+  createGuest = event => {
     let invitation = this.state.selectedInvitation;
     invitation.guests.push({});
-    this.setState({selectedInvitation: invitation});
+    this.setState({ selectedInvitation: invitation });
     event.preventDefault();
   };
 
-  removeTempGuest = (index) => {
+  removeTempGuest = index => {
     let invitation = this.state.selectedInvitation;
     invitation.guests.splice(index, 1);
-    this.setState({selectedInvitation: invitation});
+    this.setState({ selectedInvitation: invitation });
   };
 
   filterInvitations = (invitations, value) => {
     if (!value || !invitations) {
-      return invitations
+      return invitations;
     }
-    return invitations.filter(invitation =>
-      invitation.guests.filter(guest => guest.name.toUpperCase().includes(value.toUpperCase())).length > 0
+    return invitations.filter(
+      invitation =>
+        invitation.guests.filter(guest =>
+          guest.name.toUpperCase().includes(value.toUpperCase())
+        ).length > 0
     );
   };
 
-  handleInputChange = (event) => {
+  handleInputChange = event => {
     const target = event.target;
     const value = target.value;
     const name = target.name;
 
-    this.setState({[name]: value});
+    this.setState({ [name]: value });
   };
 
-  handleSearchChange = (event) => {
+  handleSearchChange = event => {
     const target = event.target;
     const value = target.value;
 
     let displayed = this.filterInvitations(this.state.invitations, value);
-    this.setState({search: value, displayedInvitations: displayed});
+    this.setState({ search: value, displayedInvitations: displayed });
     event.preventDefault();
   };
 
@@ -146,26 +154,40 @@ class Admin extends React.Component {
         <form>
           <div className="loginContainer">
             <Paper className="loginPaper">
-              <TextField name="user" value={this.state.user || ''} hintText="User" floatingLabelText="User"
-                         onChange={this.handleInputChange}
-                         fullWidth={true}/>
-              <TextField name="pass" value={this.state.pass || ''} hintText="Name" floatingLabelText="Pass"
-                         onChange={this.handleInputChange} type="password"
-                         fullWidth={true}/>
-              <FlatButton label="Login" onClick={this.login}/>
+              <TextField
+                name="user"
+                value={this.state.user || ""}
+                hintText="User"
+                floatingLabelText="User"
+                onChange={this.handleInputChange}
+                fullWidth={true}
+              />
+              <TextField
+                name="pass"
+                value={this.state.pass || ""}
+                hintText="Name"
+                floatingLabelText="Pass"
+                onChange={this.handleInputChange}
+                type="password"
+                fullWidth={true}
+              />
+              <FlatButton label="Login" onClick={this.login} />
             </Paper>
           </div>
         </form>
-      )
+      );
     }
 
     let invitationRows = [];
     if (this.state.displayedInvitations) {
       this.state.displayedInvitations.forEach(invitation => {
         invitationRows.push(
-          <NewInvitationRow callback={this.selectInvitation} invitation={invitation}
-                            key={invitation.id}/>
-        )
+          <NewInvitationRow
+            callback={this.selectInvitation}
+            invitation={invitation}
+            key={invitation.id}
+          />
+        );
       });
     }
 
@@ -173,12 +195,22 @@ class Admin extends React.Component {
       <div className="App">
         <AppBar
           title="Wedding admin"
-          style={{background: '#5388CD'}}
-          iconElementLeft={<span/>}
-          iconElementRight={<FlatButton label="Create Invitation" onClick={this.createInvitation}/>}
+          style={{ background: "#5388CD" }}
+          iconElementLeft={<span />}
+          iconElementRight={
+            <FlatButton
+              label="Create Invitation"
+              onClick={this.createInvitation}
+            />
+          }
         />
 
-        <div className={"invitationContainer " + (this.state.selectedInvitation ? '' : 'fullWidth')}>
+        <div
+          className={
+            "invitationContainer " +
+            (this.state.selectedInvitation ? "" : "fullWidth")
+          }
+        >
           <div className="fullWidth">
             <TextField
               onChange={this.handleSearchChange}
@@ -189,12 +221,13 @@ class Admin extends React.Component {
         </div>
 
         <EditForm
-          style={{flex: 1}}
+          style={{ flex: 1 }}
           token={this.state.token}
           invitation={this.state.selectedInvitation}
           callback={this.fetchAll}
           createGuest={this.createGuest}
-          removeTempGuest={this.removeTempGuest}/>
+          removeTempGuest={this.removeTempGuest}
+        />
       </div>
     );
   }
