@@ -2,6 +2,7 @@ import React, { Component } from "react";
 
 import "../../App.css";
 import Navbar from "../common/Navbar.react.js";
+import SliderMenuItem from "./SliderMenuItem.react.js";
 
 import burlington from "../../images/burlington.jpg";
 import hawthorne from "../../images/hawthorne.jpg";
@@ -449,59 +450,32 @@ class Rsvp extends Component {
           onRequestClose={this.toggleSliderDetails}
           repositionOnUpdate={false}
         >
-          <br />
-          <Paper zDepth={1}>
-            <div className={"sliderName sliderText"}>
-              <b>Burlington</b>
-            </div>
-            <img className="slider" src={burlington} alt={""} />
-            <div className={"sliderText"}>
-              {this.state.sliders ? this.state.sliders[2].description : ""}
-            </div>
-          </Paper>
-          <br />
-          <Paper zDepth={1}>
-            <div className={"sliderName sliderText"}>
-              <b>Hawthorne</b>
-            </div>
-            <img className="slider" src={hawthorne} alt={""} />
-            <div className={"sliderText"}>
-              {this.state.sliders ? this.state.sliders[1].description : ""}
-            </div>
-          </Paper>
-          <br />
-          <Paper zDepth={1}>
-            <div className={"sliderName sliderText"}>
-              <b>Ross Island</b>
-            </div>
-            <img className="slider" src={rossisland} alt={""} />
-            <div className={"sliderText"}>
-              {this.state.sliders ? this.state.sliders[3].description : ""}
-            </div>
-          </Paper>
-          <br />
-          <Paper zDepth={1}>
-            <div className={"sliderName sliderText"}>
-              <b>Sellwood</b>
-            </div>
-            <img className="slider" src={sellwood} alt={""} />
-            <div className={"sliderText"}>
-              {this.state.sliders ? this.state.sliders[0].description : ""}
-            </div>
-          </Paper>
-          <br />
-          <Paper zDepth={1}>
-            <div className={"sliderName sliderText"}>
-              <b>Tilikum</b>
-            </div>
-            <img className="slider" src={tilikum} alt={""} />
-            <div className={"sliderText"}>
-              {this.state.sliders ? this.state.sliders[4].description : ""}
-            </div>
-          </Paper>
-          <br />
-          For additional details please visit the{" "}
-          <a href="http://pdxsliders.com">PDX Sliders website</a>
+          <div className={"slider-menu-container"}>
+            <SliderMenuItem
+              slider={this.state.sliders ? this.state.sliders[2] : ""}
+              image={burlington}
+            />
+            <SliderMenuItem
+              slider={this.state.sliders ? this.state.sliders[1] : ""}
+              image={hawthorne}
+            />
+            <SliderMenuItem
+              slider={this.state.sliders ? this.state.sliders[3] : ""}
+              image={rossisland}
+            />
+            <SliderMenuItem
+              slider={this.state.sliders ? this.state.sliders[0] : ""}
+              image={sellwood}
+            />
+            <SliderMenuItem
+              slider={this.state.sliders ? this.state.sliders[4] : ""}
+              image={tilikum}
+            />
+          </div>
+          <div className={"pdx-slider-text"}>
+            For additional details please visit the{" "}
+            <a href="http://pdxsliders.com">PDX Sliders website</a>
+          </div>
         </Dialog>
       </div>
     );
