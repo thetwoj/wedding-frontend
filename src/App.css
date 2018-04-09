@@ -104,7 +104,7 @@ a.anchor {
 }
 
 @media (max-width: 768px) {
-  .navbar-links a {
+  .hide-on-mobile a {
     display: none;
   }
 }
@@ -424,9 +424,8 @@ main {
 }
 
 img.slider {
-  width: 20vh;
-  height: auto;
-  margin-left: 16px;
+  padding: 0;
+  width: 100%;
 }
 
 .slider-menu-container {
@@ -448,6 +447,7 @@ img.slider {
 
 @media (max-width: 768px) {
   .slider-menu-item {
+    margin: 12px 0 12px 0;
     flex-grow: 1;
     width: 100%;
   }

@@ -271,8 +271,8 @@ class EditForm extends React.Component {
             <TextField
               type="number"
               name="food_choice"
-              value={guest.food_choice || ""}
-              floatingLabelText="Food choice"
+              value={guest.sliders || ""}
+              floatingLabelText="Sliders"
               onChange={event => this.handleInputChange(event, index)}
               fullWidth={true}
             />
@@ -280,6 +280,7 @@ class EditForm extends React.Component {
 
             <Checkbox
               name="offered_plus_one"
+              disabled={guest.invited_by}
               checked={guest.offered_plus_one || false}
               label="Offered +1"
               onCheck={event => this.handleInputChange(event, index)}

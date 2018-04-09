@@ -22,7 +22,7 @@ class Navbar extends Component {
             </div>
           )}
           {!this.props.rsvp && (
-            <div>
+            <div className={"hide-on-mobile"}>
               <a href="/rsvp" style={{ marginLeft: "12px" }}>
                 RSVP
               </a>
