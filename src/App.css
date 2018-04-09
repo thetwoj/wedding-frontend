@@ -131,6 +131,11 @@ a.anchor {
   top: 0;
 }
 
+.navbarShim {
+  height: 64px;
+  top: 0;
+}
+
 .row {
   width: auto;
   margin: auto;
@@ -153,6 +158,19 @@ a.anchor {
   width: 60vw;
   max-width: 1140px;
   text-align: left;
+}
+
+.centered-content-block {
+  display: flex;
+  justify-content: center;
+  height: 100%;
+}
+
+.centered-content {
+  margin-top: 24px;
+  width: 60vw;
+  max-width: 1140px;
+  text-align: center;
 }
 
 @media (max-width: 768px) {
@@ -302,16 +320,60 @@ main {
   padding: 20px;
 }
 
+.getRsvpSubmit {
+  margin-left: auto;
+}
+
+.rsvpSubmit {
+  margin-left: auto;
+  margin-right: 20vw;
+  margin-bottom: 24px;
+}
+
 .rsvpGuestContainer {
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 .rsvpGuest {
   display: flex;
   flex-direction: column;
   align-items: center;
+  min-width: 250px;
   margin: 24px;
-  width: 20%;
+  width: 20vw;
   padding: 20px;
+}
+
+.rsvpPlusOneGuest {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  min-width: 250px;
+  margin: 24px;
+  width: 20vw;
+  padding: 20px;
+}
+
+.guestName {
+  margin-top: 27px;
+  margin-bottom: 27px;
+}
+
+/*Sliders*/
+
+.sliderName {
+  font-size: 3em;
+}
+
+.sliderText {
+  padding: 16px;
+}
+
+img.slider {
+  width: 20vh;
+  height: auto;
+  margin-left: 16px;
 }

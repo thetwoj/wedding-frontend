@@ -9,7 +9,7 @@ class Home extends Component {
     let logisticsText = <div>
       <p><a href="/rsvp">RSVP</a></p>
       <p>Date: June 9, 2018</p>
-      <p>Time: 5pm - 10pm</p>
+      <p>Time: 5:30pm - 10pm</p>
       <p>Location: Barn Kestrel in West Linn, Oregon</p>
       <p>Hotel block: The Grand Hotel at Bridgeport in Tigard, OR - 6 miles from the venue<br/>
         <br/>
@@ -20,7 +20,7 @@ class Home extends Component {
     let registryText = <div>
       <p>Don't feel obligated to get us anything, your presence is what we're really after!</p>
       <p><strong>Please ship any physical gifts as we don't live in Oregon</strong></p>
-      <p>Our current address:</p>
+      <p>Our current address (we will be moving again in early May):</p>
       <p className="indented-text">
         5708 W Parmer Lane APT 2308<br/>
         Austin, TX 78727
@@ -121,7 +121,7 @@ class Home extends Component {
             <div className="flex-center">
               <div className="white-text transparent-gray-bg">
                 <h1 className="title">We're getting married!</h1>
-                <p className="subtitle">It's time to <a href="/rsvp" className="rsvpLink">RSVP</a></p>
+                <p className="subtitle">It's time to <a href="/rsvp" className="rsvpLink">RSVP</a> - new details below</p>
               </div>
             </div>
           </div>
