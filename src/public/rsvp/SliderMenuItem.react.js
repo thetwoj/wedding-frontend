@@ -6,7 +6,7 @@ import Paper from "material-ui/Paper";
 export default class SliderMenuItem extends Component {
   static propTypes = {
     slider: PropTypes.object,
-    image: PropTypes.element
+    image: PropTypes.string
   };
 
   render() {

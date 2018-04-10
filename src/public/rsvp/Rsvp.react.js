@@ -382,18 +382,42 @@ class Rsvp extends Component {
         <Navbar rsvp={true} />
         <div className={"navbarShim"} />
 
-        {!this.state.showThanks && (
-          <div className={"centered-content-block"}>
-            <span className={"centered-content"}>
-              Check out the <a href={"/#logistics"}>wedding logistics</a> and{" "}
-              <a href={"/#faq"}>FAQ</a> before submitting your RSVP
-            </span>
-          </div>
-        )}
+        {this.state.invitation &&
+          !this.state.showThanks && (
+            <div className={"centered-content-block"}>
+              <span className={"centered-content"}>
+                Check out the{" "}
+                <a href={"/#logistics"} target="_blank">
+                  wedding logistics
+                </a>{" "}
+                and{" "}
+                <a href={"/#faq"} target="_blank">
+                  FAQ
+                </a>{" "}
+                before submitting your RSVP
+              </span>
+            </div>
+          )}
 
         {!this.state.invitation &&
           !this.state.showThanks && (
             <form onSubmit={this.getRsvp}>
+              <div className={"centered-content-block"}>
+                <span className={"centered-content"}>
+                  Your RSVP code can be found on the small card included with
+                  your invitation<br />
+                </span>
+              </div>
+              <div className={"centered-content-block"}>
+                <span className={"centered-content"}>
+                  If you misplaced your RSVP code please{" "}
+                  <a
+                    href={"mailto:thetwoj@gmail.com,amara.kay.keller@gmail.com"}
+                  >
+                    send us an email
+                  </a>
+                </span>
+              </div>
               <div className="accessCodeContainer">
                 <div className="accessCode">
                   <TextField
@@ -452,23 +476,23 @@ class Rsvp extends Component {
         >
           <div className={"slider-menu-container"}>
             <SliderMenuItem
-              slider={this.state.sliders ? this.state.sliders[2] : ""}
+              slider={this.state.sliders ? this.state.sliders[2] : {}}
               image={burlington}
             />
             <SliderMenuItem
-              slider={this.state.sliders ? this.state.sliders[1] : ""}
+              slider={this.state.sliders ? this.state.sliders[1] : {}}
               image={hawthorne}
             />
             <SliderMenuItem
-              slider={this.state.sliders ? this.state.sliders[3] : ""}
+              slider={this.state.sliders ? this.state.sliders[3] : {}}
               image={rossisland}
             />
             <SliderMenuItem
-              slider={this.state.sliders ? this.state.sliders[0] : ""}
+              slider={this.state.sliders ? this.state.sliders[0] : {}}
               image={sellwood}
             />
             <SliderMenuItem
-              slider={this.state.sliders ? this.state.sliders[4] : ""}
+              slider={this.state.sliders ? this.state.sliders[4] : {}}
               image={tilikum}
             />
           </div>

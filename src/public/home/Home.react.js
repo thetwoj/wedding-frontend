@@ -9,7 +9,8 @@ class Home extends Component {
     let logisticsText = (
       <div>
         <p>
-          <a href="/rsvp">RSVP</a>
+          <a href="/rsvp">RSVP</a> - look for the RSVP code on the small card
+          included with your invitation
         </p>
         <p>Date: June 9, 2018</p>
         <p>Time: 5:30pm - 10pm</p>
@@ -38,9 +39,14 @@ class Home extends Component {
             Please ship any physical gifts as we don't live in Oregon
           </strong>
         </p>
-        <p>Our current address (we will be moving again in early May):</p>
+        <p>Our address until May 8th:</p>
         <p className="indented-text">
           5708 W Parmer Lane APT 2308<br />
+          Austin, TX 78727
+        </p>
+        <p>Our address after May 8th:</p>
+        <p className="indented-text">
+          5708 W Parmer Lane APT 5207<br />
           Austin, TX 78727
         </p>
         <p>
@@ -184,7 +190,8 @@ class Home extends Component {
                   <a href="/rsvp" className="rsvpLink">
                     RSVP
                   </a>{" "}
-                  - new details below
+                  - look for the RSVP code on the small card included with your
+                  invitation
                 </p>
               </div>
             </div>
