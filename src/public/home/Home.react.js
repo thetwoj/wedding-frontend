@@ -25,6 +25,10 @@ class Home extends Component {
           Transportation: There will be a bus from the hotel to the venue and
           back again
         </p>
+        <p>
+          Check back later for details on the Friday wine tour and hospitality
+          suite
+        </p>
       </div>
     );
 

@@ -112,12 +112,13 @@ class Rsvp extends Component {
     this.setState({ invitation: invitation });
   };
 
-  handleAttendingChange = (event, guest, isInputChecked) => {
+  handleAttendingChange = (event, guest, isAttending) => {
     let invitation = this.state.invitation;
-    guest.attending = isInputChecked;
+    guest.attending = isAttending;
 
-    if (!isInputChecked) {
+    if (!isAttending) {
       guest.sliders = null;
+      guest.riding_bus = null;
       if (guest.invited_by) {
         this.deletePlusOne(event, guest);
       }
@@ -129,6 +130,12 @@ class Rsvp extends Component {
         });
       }
     }
+    this.setState({ invitation: invitation });
+  };
+
+  handleBusChange = (event, guest, isRidingBus) => {
+    let invitation = this.state.invitation;
+    guest.riding_bus = isRidingBus;
     this.setState({ invitation: invitation });
   };
 
@@ -208,6 +215,13 @@ class Rsvp extends Component {
         });
         return;
       }
+      if (guest.attending && guest.riding_bus === null) {
+        this.setState({
+          error:
+            "Please indicate if each attending guest will be riding the bus"
+        });
+        return;
+      }
     }
 
     invitation.guests.forEach(guest => {
@@ -221,6 +235,7 @@ class Rsvp extends Component {
           name: guest.name,
           attending: guest.attending,
           invitation: invitation.id,
+          riding_bus: guest.riding_bus,
           sliders: guest.attending ? [guest.slider1, guest.slider2] : []
         })
       })
@@ -304,40 +319,68 @@ class Rsvp extends Component {
               <MenuItem value={true} primaryText="Yeah!" />
               <MenuItem value={false} primaryText="Nah" />
             </SelectField>
-            <br />
+            {guest.attending && <br />}
 
-            <p>
-              <b>
-                <a href={""} onClick={this.toggleSliderDetails}>
-                  Slider menu
-                </a>
-              </b>
-            </p>
+            {guest.attending && (
+              <p style={{ marginBottom: "0px" }}>
+                <b>
+                  <a href={""} onClick={this.toggleSliderDetails}>
+                    Slider menu
+                  </a>
+                </b>
+              </p>
+            )}
 
-            <SelectField
-              disabled={!guest.attending}
-              floatingLabelText={"Choose first slider"}
-              value={guest.slider1}
-              onChange={(event, _, item) =>
-                this.handleSlider1Change(guest, item)
-              }
-              fullWidth={true}
-            >
-              {this.sliderMenuItems()}
-            </SelectField>
-            <br />
+            {guest.attending && (
+              <SelectField
+                disabled={!guest.attending}
+                floatingLabelText={"Choose first slider"}
+                value={guest.slider1}
+                onChange={(event, _, item) =>
+                  this.handleSlider1Change(guest, item)
+                }
+                fullWidth={true}
+              >
+                {this.sliderMenuItems()}
+              </SelectField>
+            )}
+            {guest.attending && <br />}
 
-            <SelectField
-              disabled={!guest.attending}
-              floatingLabelText={"Choose second slider"}
-              value={guest.slider2}
-              onChange={(event, _, item) =>
-                this.handleSlider2Change(guest, item)
-              }
-              fullWidth={true}
-            >
-              {this.sliderMenuItems()}
-            </SelectField>
+            {guest.attending && (
+              <SelectField
+                disabled={!guest.attending}
+                floatingLabelText={"Choose second slider"}
+                value={guest.slider2}
+                onChange={(event, _, item) =>
+                  this.handleSlider2Change(guest, item)
+                }
+                fullWidth={true}
+              >
+                {this.sliderMenuItems()}
+              </SelectField>
+            )}
+
+            {guest.attending && (
+              <p style={{ textAlign: "center" }}>
+                Do you plan on riding the bus from the hotel to the venue and
+                back?
+              </p>
+            )}
+
+            {guest.attending && (
+              <SelectField
+                name="riding_bus"
+                value={guest.riding_bus === null ? null : guest.riding_bus}
+                floatingLabelText="Riding bus?"
+                onChange={(event, key, payload) =>
+                  this.handleBusChange(event, guest, payload)
+                }
+                fullWidth={true}
+              >
+                <MenuItem value={true} primaryText="Yes, I love buses" />
+                <MenuItem value={false} primaryText="No, I don't trust buses" />
+              </SelectField>
+            )}
             <br />
           </Paper>
         );
