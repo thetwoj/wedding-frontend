@@ -209,6 +209,12 @@ class Rsvp extends Component {
         this.setState({ error: "Please enter a name for your guest" });
         return;
       }
+      if (guest.attending === null) {
+        this.setState({
+          error: "Please indicate attendance for each invitee"
+        });
+        return;
+      }
       if (guest.attending && !(guest.slider1 && guest.slider2)) {
         this.setState({
           error: "Please select two sliders for each attending guest"
@@ -310,7 +316,7 @@ class Rsvp extends Component {
             <SelectField
               name="attending"
               value={guest.attending === null ? null : guest.attending}
-              floatingLabelText="Guest attending?"
+              floatingLabelText="Attending?"
               onChange={(event, key, payload) =>
                 this.handleAttendingChange(event, guest, payload)
               }
