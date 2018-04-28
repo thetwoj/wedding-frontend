@@ -43,14 +43,9 @@ class Home extends Component {
             Please ship any physical gifts as we don't live in Oregon
           </strong>
         </p>
-        <p>Our address until May 8th:</p>
+        <p>Our current address is:</p>
         <p className="indented-text">
-          5708 W Parmer Lane APT 2308<br />
-          Austin, TX 78727
-        </p>
-        <p>Our address after May 8th:</p>
-        <p className="indented-text">
-          5708 W Parmer Lane APT 5207<br />
+          5708 W Parmer Lane APT 4302<br />
           Austin, TX 78727
         </p>
         <p>
