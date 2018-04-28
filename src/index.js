@@ -2,7 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
-import registerServiceWorker from "./registerServiceWorker";
+// import registerServiceWorker from "./registerServiceWorker";
+import { unregister} from "./registerServiceWorker";
 import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
 
 const WrapApp = () => (
@@ -12,4 +13,5 @@ const WrapApp = () => (
 );
 
 ReactDOM.render(<WrapApp />, document.getElementById("root"));
-registerServiceWorker();
+unregister();
+// registerServiceWorker();
