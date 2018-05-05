@@ -29,6 +29,9 @@ class Navbar extends Component {
               <a href="#logistics" style={{ marginLeft: "12px" }}>
                 Logistics
               </a>
+              <a href="#winetour" style={{ marginLeft: "12px" }}>
+                Wine tour
+              </a>
               <a href="#registry" style={{ marginLeft: "12px" }}>
                 Registry
               </a>

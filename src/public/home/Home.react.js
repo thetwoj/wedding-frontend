@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, {Component} from "react";
 
 import "../../App.css";
 import TextSection from "./TextSection.react.js";
@@ -17,17 +17,34 @@ class Home extends Component {
         <p>Location: Barn Kestrel in West Linn, Oregon</p>
         <p>
           Hotel block: The Grand Hotel at Bridgeport in Tigard, OR - 6 miles
-          from the venue<br />
-          <br />
+          from the venue<br/>
+          <br/>
           Call (503) 968-5757 and ask for the Keller/Graham wedding
         </p>
         <p>
-          Transportation: There will be a bus from the hotel to the venue and
-          back again
+          Transportation: A bus will depart from the hotel at 5pm and return from the venue at 10pm
+        </p>
+      </div>
+    );
+
+    let wineTourText = (
+      <div>
+        <p>Date: Friday June 8, 2018</p>
+        <p>Time: 1pm - 6pm</p>
+        <p>Tour starts and ends at the Grand Hotel in Bridgeport</p>
+        <p><b>Registration is only guaranteed prior to June 2</b></p>
+        <p>
+          Amara's parents have graciously arranged a professional tour of the beautiful Beacon
+          Hill and Colene Clemons wineries. The tour will include transportation, wine tastings,
+          and food to pair with the wine. All tour costs will be covered for wedding guests.
         </p>
         <p>
-          Check back later for details on the Friday wine tour and hospitality
-          suite
+          Please only register if you intend to participate as the fees are non-refundable.
+          The tour is 21+, no exceptions.
+        </p>
+        <p>
+          Please register by sending an email to Amara's father, Ronnie Keller, at<span> </span>
+          <a href="mailto:ronnie.keller50@gmail.com">Ronnie.Keller50@gmail.com</a>
         </p>
       </div>
     );
@@ -45,7 +62,7 @@ class Home extends Component {
         </p>
         <p>Our current address is:</p>
         <p className="indented-text">
-          5708 W Parmer Lane APT 4302<br />
+          5708 W Parmer Lane APT 4302<br/>
           Austin, TX 78727
         </p>
         <p>
@@ -74,8 +91,8 @@ class Home extends Component {
           Schmitza down the street the following Friday for lunch. Everyone
           accepted and Amara took solace in the fact that even if Glen and JJ
           were weird Valjean would be there and it wouldn't be a complete loss.
-          <br />
-          <br />
+          <br/>
+          <br/>
           By the time Friday rolled around Valjean had to bail due to work
           obligations and Amara couldn't come up with a good enough excuse to
           bow out herself. Amara, Glen, and JJ ended up sharing pretty decent
@@ -83,8 +100,8 @@ class Home extends Component {
           Amara to come to a local sports bar with them that evening to watch
           the Blazers game. They started texting that evening and simply never
           stopped.
-          <br />
-          <br />
+          <br/>
+          <br/>
           Later that summer Amara bought a house nearby and about a year later
           she invited JJ to move in. In the fall of 2016 Amara and JJ packed
           everything up and sold the house to move down to the San Francisco Bay
@@ -94,8 +111,8 @@ class Home extends Component {
           months at Intel Amara accepted a job offer from IBM out of San
           Francisco, starting just days after getting engaged in Cabo San Lucas
           on July 2, 2017.
-          <br />
-          <br />
+          <br/>
+          <br/>
           In their time together Amara and JJ have found shared joy in cooking
           together, farmer's markets, travelling, technology, breakfast
           burritos, friends, family, Amazon Prime, and their 5 year old cat
@@ -110,74 +127,74 @@ class Home extends Component {
       <div>
         <p>
           <strong>What's the dress code?</strong>
-          <br />
+          <br/>
           Casual but please no jeans or shorts
         </p>
         <p>
           <strong>What are your colors?</strong>
-          <br />
+          <br/>
           White, blue, and light gray (#ffffff, #5388cd, and #f5f5f5,
           respectively)
         </p>
         <p>
           <strong>What are we eating?</strong>
-          <br />
+          <br/>
           Two local food trucks will be catering for us - PDX Sliders will
           provide a dinner of sliders, salad, and fries while Momo's Hawaiian
           Grill will supply shaved ice for dessert
         </p>
         <p>
           <strong>Will we be outdoors?</strong>
-          <br />
+          <br/>
           If the weather cooperates the ceremony will happen outdoors and the
           reception will be in the barn, if it's raining the ceremony will take
-          place in the barn<br />
-          <br />
+          place in the barn<br/>
+          <br/>
           Please note that regardless of weather it's likely you'll have to walk
           on unpaved ground at some point during the evening, plan shoes
           accordingly
         </p>
         <p>
           <strong>Is the barn heated?</strong>
-          <br />
+          <br/>
           No, please take the forecast into account prior to foregoing a jacket
         </p>
         <p>
           <strong>Will there be adult beverages?</strong>
-          <br />
+          <br/>
           Beer, wine, and spirits will be served
         </p>
         <p>
           <strong>Is there enough parking?</strong>
-          <br />
+          <br/>
           There is plenty of parking and the owner of the property will help
           direct you from horseback
         </p>
         <p>
           <strong>Will there be dancing?</strong>
-          <br />
+          <br/>
           We sure hope so, the DJ will probably get sad if everyone abstains
         </p>
         <p>
           <strong>Can we dance all night long?</strong>
-          <br />
+          <br/>
           Unfortunately no, local ordinances will bring our evening to a close
           at 10pm sharp
         </p>
         <p>
           <strong>I have a question you didn't answer here</strong>
-          <br />
+          <br/>
           <a href="mailto:thetwoj@gmail.com,amara.kay.keller@gmail.com">
             Email us
           </a>, we're pretty nice
         </p>
-        <p />
+        <p/>
       </div>
     );
 
     return (
       <div className="App">
-        <Navbar />
+        <Navbar/>
 
         <div id="home">
           <div className="view intro blue-bg">
@@ -203,11 +220,16 @@ class Home extends Component {
           classes="content-block"
         />
         <TextSection
-          title="Registry"
-          text={registryText}
+          title="Wine Tour"
+          text={wineTourText}
           classes="content-block gray-bg"
         />
-        <div className="pic-break" />
+        <TextSection
+          title="Registry"
+          text={registryText}
+          classes="content-block"
+        />
+        <div className="pic-break"/>
         <TextSection
           title="Our Story"
           text={storyText}
@@ -218,7 +240,7 @@ class Home extends Component {
           text={faqText}
           classes="content-block gray-bg"
         />
-        <div className="noodles-break" />
+        <div className="noodles-break"/>
       </div>
     );
   }
